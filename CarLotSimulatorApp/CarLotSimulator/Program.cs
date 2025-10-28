@@ -5,55 +5,9 @@ namespace CarLotSimulator
 {
     class Program
     {
-        public class Car
-        {
-            public Car() // Default Constructor
-            {
-            }
-            
-            // Custom Constructor
-            public Car(int year, string make, string model, bool isDrivable)
-            {
-                Year = year;
-                Make = make;
-                Model = model;
-                IsDrivable = isDrivable;
-            }
-
-            public int Year; // Property		
-            public string Make { get; set; } // Property
-            public string Model { get; set; } // Property
-            public string EngineNoise { get; set; } // Property
-            public string HonkNoise { get; set; } // Property
-            public bool IsDrivable;
-
-            public void MakeEngineNoise(string engineNoise)
-            {
-                EngineNoise = engineNoise;
-            }
-
-            public void MakeHonkNoise(string honkNoise)
-            {
-                HonkNoise = honkNoise;
-            }
-        }
-
-        public class CarLot
-        {
-            public List<Car> ParkingLot { get; set; } = new List<Car>();
-
-            public void PrintCars()
-            {
-                foreach (var car in ParkingLot)
-                {
-                    Console.WriteLine($"{car.Year} {car.Make} {car.Model}");   
-                }
-            }
-        }
-
         static void Main(string[] args)
         {
-            //TODO
+            // Create Car lot object that will hold the list of cars
             CarLot carLotA = new CarLot();
 
             //Create a separate class file called Car
@@ -73,6 +27,7 @@ namespace CarLotSimulator
             myFirstCar.MakeHonkNoise("Beep beep");
             myFirstCar.IsDrivable = false;
             
+            // Add this car to the parking lot.
             carLotA.ParkingLot.Add(myFirstCar);
 
             //*************BONUS*************//
@@ -89,28 +44,30 @@ namespace CarLotSimulator
             mySecondCar.MakeEngineNoise("Varoom");
             mySecondCar.MakeHonkNoise("Beep beep");
 
+            // add second car to the parking lot
             carLotA.ParkingLot.Add(mySecondCar);
 
+            // instantiate third car with custom constructor
             Car myThirdCar = new Car(2025, "Toyota", "Corolla", true);
             myThirdCar.MakeEngineNoise("Varoom");
             myThirdCar.MakeHonkNoise("Beep beep");
 
-            Console.Write($"First car  = {myFirstCar.Year} {myFirstCar.Make} {myFirstCar.Model}");
-            Console.WriteLine($" {myFirstCar.EngineNoise} {myFirstCar.HonkNoise} {myFirstCar.IsDrivable}");
-            Console.Write($"Second car = {mySecondCar.Year} {mySecondCar.Make} {mySecondCar.Model}");
-            Console.WriteLine($" {mySecondCar.EngineNoise} {mySecondCar.HonkNoise} {mySecondCar.IsDrivable}");
-            Console.Write($"Third car  = {myThirdCar.Year} {myThirdCar.Make} {myThirdCar.Model}");
-            Console.WriteLine($" {myThirdCar.EngineNoise} {myThirdCar.HonkNoise} {myThirdCar.IsDrivable}");
-
+            // add the third car to the parking lot
             carLotA.ParkingLot.Add(myThirdCar);
 
             //*************BONUS X 2*************//
 
             //Create a CarLot class
             //It should have at least one property: a List of cars
-            //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
-            //At the end iterate through the list printing each of car's Year, Make, and Model to the console
-            carLotA.PrintCars();
+            //Instantiate the a Carlot at the beginning of the program and as you create a car add the car to the list.
+            
+            // iterate through the list of cars in the parking lot and print all the fields for each car
+            foreach (var car in carLotA.ParkingLot)
+            {
+                Console.WriteLine($"{car.Year} {car.Make} {car.Model}");  
+                Console.WriteLine($"\t Engine noise = {car.EngineNoise}, Car Honk Noise = {car.HonkNoise}, Is Drivable = {car.IsDrivable}");
+            }
+            
         }
         
     }
