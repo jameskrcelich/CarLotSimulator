@@ -2,7 +2,10 @@ namespace CarLotSimulator;
 
 public class Car
 {
-   public Car() {} // Default Constructor
+    public Car()  // Default Constructor
+    {
+        CarLot.numOfCars++;
+    }
    
    // Custom Constructor
    public Car(int year, string make, string model, bool isDrivable)
